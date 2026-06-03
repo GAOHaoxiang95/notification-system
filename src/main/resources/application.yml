@@ -2,6 +2,9 @@ spring:
   application:
     name: notification-delivery-service
   datasource:
+    # Demo default: in-memory H2 is convenient for local runs, but it does not
+    # survive process restarts. Use PostgreSQL or another durable database for
+    # the "accepted notifications are not lost after restart" guarantee.
     url: jdbc:h2:mem:notification;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH
     username: sa
     password:

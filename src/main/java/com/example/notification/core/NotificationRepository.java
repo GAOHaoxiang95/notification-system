@@ -170,6 +170,10 @@ public class NotificationRepository {
         return jdbcTemplate.update("""
                         update notification_task
                         set status = 'PENDING',
+                            -- Demo simplification: manual retry starts a fresh
+                            -- attempt window, so delivery_attempt.attempt_no can
+                            -- repeat across retry rounds. A production version
+                            -- should keep a monotonic sequence or add retry_round.
                             attempt_count = 0,
                             next_attempt_at = ?,
                             locked_until = null,
